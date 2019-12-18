@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Weather</string>
+    <string name="WeatherApiKey">b6005c3a5f494b5ed538d4ef32ebd307</string>
+    <string name="BASE_URL">https://api.darksky.net/forecast/</string>
+    <string name="DarkSkyAttribution">Powered by DarkSky.net</string>
+
+
+</resources>
