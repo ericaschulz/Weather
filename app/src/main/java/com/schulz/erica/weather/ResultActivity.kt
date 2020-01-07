@@ -15,13 +15,41 @@ class ResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
+
+
         var listView = findViewById<AndroidWidgetListView?>(R.id.result_list_view)
 
         var infoStrings = mutableListOf<String>()
 
         var adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, infoStrings)
+
         listView?.adapter = adapter
 
+
+        var latLongRetriever = LatLongRetriever()
+
+        val zipCallback = object : Callback<ZipCodeToLatLong> {
+
+            override fun onResponse(call: Call<ZipCodeToLatLong>, response: Response<ZipCodeToLatLong>) {
+
+                val zip_code = response.body()?.zip_code
+                val lat = response.body()?.lat
+                val lng = response.body()?.lng
+                val city = response.body()?.city
+                val state = response.body()?.state
+
+                //need to plug in zipcode response into the weather retriever...can we replace "search term" with zip_code??
+
+
+            }
+
+            override fun onFailure(call: Call<ZipCodeToLatLong>, t: Throwable) {
+
+                println("No location info returned.")
+
+            }
+
+        }
 
 
         var retriever = WeatherRetriever()
@@ -42,14 +70,9 @@ class ResultActivity : AppCompatActivity() {
 
                 infoStrings.add(infoString)
 
-
-
-
                 adapter.notifyDataSetChanged()
 
-
             }
-
 
             override fun onFailure(call: Call<Weather>, t: Throwable) {
 
@@ -59,7 +82,13 @@ class ResultActivity : AppCompatActivity() {
 
         }
 
-        retriever.getForecast(callback)
+        val searchTerm = intent.extras.getString("searchTerm")
+
+
+
+
+        //need to pass in a lat/long HERE
+        retriever.getForecast(callback, searchTerm)
 
 
     }

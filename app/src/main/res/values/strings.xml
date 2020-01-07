@@ -1,8 +1,15 @@
 <resources>
     <string name="app_name">Weather</string>
-    <string name="WeatherApiKey">b6005c3a5f494b5ed538d4ef32ebd307</string>
-    <string name="BASE_URL">https://api.darksky.net/forecast/</string>
+    <string name="DarkSkyApiKey">b6005c3a5f494b5ed538d4ef32ebd307</string>
+    <string name="DsBASE_URL">https://api.darksky.net/forecast/</string>
     <string name="DarkSkyAttribution">Powered by DarkSky.net</string>
+    <string name="OpenWeatherApiKey">034a2a83b44887ea7393cb99c50a51b7</string>
+    <string name="OwBASE_URL">api.openweathermap.org/data/2.5/weather?q={city name}</string>
+    <string name="OwZBASE_URL">api.openweathermap.org/data/2.5/weather?zip=94040,us</string>
+    <string name="ZipCodeApiKey">dFH8pYUhT1UF3SYhbMVsjaMbdykIjtnB6gVdC1JmpeeeJVmsFOtCbB3jnr8XaXNw</string>
+
+
+
 
 
 </resources>
