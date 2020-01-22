@@ -13,6 +13,7 @@ class MainActivity : AppCompatActivity() {
         setContentView(R.layout.activity_main)
 
 
+
         var forecastButton = findViewById<Button>(R.id.forecast_button)
 
 
@@ -21,7 +22,9 @@ class MainActivity : AppCompatActivity() {
 
             var showForecastResults = Intent(applicationContext, ResultActivity::class.java)
             val editText = findViewById<EditText>(R.id.editText)
-            showForecastResults.putExtra("searchTerm",editText.text.toString())
+
+            showForecastResults.putExtra("zip_code",editText.text.toString())
+
             startActivity(showForecastResults)
 
         }
