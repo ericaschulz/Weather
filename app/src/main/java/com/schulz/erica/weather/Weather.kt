@@ -14,18 +14,12 @@ interface WeatherAPI {
     @GET("/forecast/b6005c3a5f494b5ed538d4ef32ebd307/{latitude},{longitude}")
 
 
-//    "37.8267,-122.4233"
-
-
-
-    fun getForecast(@Path("latitude") latitude:String,@Path("longitude") longitude:String): Call<Weather>
+    fun getForecast(@Path("latitude") latitude:String?,@Path("longitude") longitude:String?): Call<Weather>
 }
 
-class Weather(var timezone: String, var currently: CurrentWeather, var minutely: Summary)
+class Weather(var currently: CurrentWeather, var minutely: Summary)
 class CurrentWeather(var temperature: String)
 class Summary(var summary: String)
-
-
 
 
 
@@ -35,15 +29,16 @@ class WeatherRetriever {
 
     init{
 
-     val retrofit =  Retrofit.Builder().baseUrl("https://api.darksky.net")
-            .addConverterFactory(GsonConverterFactory.create()).build()
-            service = retrofit.create(WeatherAPI::class.java)
+     val retrofit =  Retrofit.Builder()
+         .baseUrl("https://api.darksky.net")
+         .addConverterFactory(GsonConverterFactory.create())
+         .build()
+         service = retrofit.create(WeatherAPI::class.java)
     }
 
-    //Change this method signature to take lat and lng as separate parameters
 
-    fun getForecast(callback: Callback<Weather>, latLong: MutableList<String>) {
-        val call = service.getForecast(latLong.get(0),latLong.get(1))
+    fun getForecast(callback: Callback<Weather>, lat: String?, lng: String?) {
+        val call = service.getForecast(lat,lng)
         call.enqueue(callback)
 
     }

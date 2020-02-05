@@ -15,7 +15,7 @@ interface Zip {
 
 }
 
-    class ZipCodeToLatLong(val lat: String, val lng: String)
+    class ZipCodeToLatLong(val lat: String?, val lng: String?, val city: String?, val state: String?)
 
 
     class LatLongRetriever {
@@ -30,7 +30,7 @@ interface Zip {
         }
 
 
-            fun getLatLong(zipCallback: Callback<ZipCodeToLatLong>, zipCode: String) {
+        fun getLatLong(zipCallback: Callback<ZipCodeToLatLong>, zipCode: String) {
 
             val call = latLongService.getLatLong(zipCode)
 

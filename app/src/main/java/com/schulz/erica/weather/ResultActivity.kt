@@ -3,6 +3,7 @@ package com.schulz.erica.weather
 import android.os.Bundle
 import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
+import kotlinx.android.synthetic.main.activity_result.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -18,7 +19,7 @@ class ResultActivity : AppCompatActivity() {
         val zipCode = intent.extras.getString("zip_code")
 
 
-        var latLong = mutableListOf<String>()
+
         var latLongRetriever = LatLongRetriever()
 
         var listView = findViewById<AndroidWidgetListView?>(R.id.result_list_view)
@@ -34,14 +35,12 @@ class ResultActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
 
-                val timezone = response.body()?.timezone
 
                 val summary = response.body()?.minutely?.summary
 
                 val temperature = response.body()?.currently?.temperature
 
-                val infoString = "${timezone}:${summary}:${temperature}"
-
+                val infoString = summary.toString() + " Current temperature is " + temperature + "F"
 
 
                 infoStrings.add(infoString)
@@ -65,15 +64,17 @@ class ResultActivity : AppCompatActivity() {
 
                 val lat = response.body()?.lat
                 val lng = response.body()?.lng
+                val city: String? = response.body()?.city
+                val state: String? = response.body()?.state
 
-                //val latLng = "${lat}:${lng}"
+                val cityState: String? =city.toString() + ", " + state.toString()
 
-                latLong.add(lat?: "0.0")
-                latLong.add(lng?: "0.0")
+                city_name.text = cityState
+
 
 
                 var weatherRetriever = WeatherRetriever()
-                weatherRetriever.getForecast(weatherCallback, latLong)
+                weatherRetriever.getForecast(weatherCallback, lat, lng)
 
 
 
