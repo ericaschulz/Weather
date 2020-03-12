@@ -1,7 +1,6 @@
 package com.schulz.erica.weather
 
 import android.os.Bundle
-import android.support.v7.app.AppCompatActivity
 import android.widget.ArrayAdapter
 import kotlinx.android.synthetic.main.activity_result.*
 import retrofit2.Call
@@ -10,7 +9,7 @@ import retrofit2.Response
 import android.widget.ListView as AndroidWidgetListView
 
 
-class ResultActivity : AppCompatActivity() {
+class ResultActivity : CoroutineScopeActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -22,7 +21,7 @@ class ResultActivity : AppCompatActivity() {
 
         var latLongRetriever = LatLongRetriever()
 
-        var listView = findViewById<AndroidWidgetListView?>(R.id.result_list_view)
+        var listView = findViewById<AndroidWidgetListView>(R.id.result_list_view)
 
         var infoStrings = mutableListOf<String>()
 
