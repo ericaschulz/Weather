@@ -33,12 +33,21 @@ class ResultActivity : AppCompatActivity() {
 
             override fun onResponse(call: Call<Weather>, response: Response<Weather>) {
 
-
-                val summary = response.body()?.minutely?.summary
+                val currentSummary = response.body()?.minutely?.summary
 
                 val temperature = response.body()?.currently?.temperature
 
-                val infoString = summary.toString() + " Current temperature is " + temperature + "F"
+                val apparentTemperature = response.body()?.currently?.apparentTemperature
+
+                val humidity = response.body()?.currently?.humidity
+
+                val hourly = response.body()?.hourly?.summary
+
+                val daily = response.body()?.daily?.summary
+
+                val infoString = currentSummary.toString() + "..presently. The current temperature is " + temperature + "F, and the apparent" +
+                        " (real feel) temperature is " + apparentTemperature+
+                        "F. The humidity is " +humidity+ ". The forecast for the rest of the day is: " +hourly+ "Throughout the week: " +daily+""
 
 
                 infoStrings.add(infoString)
@@ -54,7 +63,6 @@ class ResultActivity : AppCompatActivity() {
             }
 
         }
-
         val zipCallback = object : Callback<ZipCodeToLatLong> {
 
             override fun onResponse(call: Call<ZipCodeToLatLong>, response: Response<ZipCodeToLatLong>) {

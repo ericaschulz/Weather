@@ -24,6 +24,7 @@ android {
 
         buildConfigField "String", "DS_BASE_URL", localProperties['DS_BASE_URL']
         buildConfigField "String", "ZIP_BASE_URL", localProperties['ZIP_BASE_URL']
+        buildConfigField "String", "POSTAL_CODE_BASE_URL", localProperties['POSTAL_CODE_BASE_URL']
 
     }
     buildTypes {
@@ -65,4 +66,8 @@ android {
 
     }
 
+}
+
+dependencies {
+    implementation 'androidx.test.ext:junit-ktx:1.1.3'
 }

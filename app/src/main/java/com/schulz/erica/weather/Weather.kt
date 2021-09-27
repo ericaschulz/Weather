@@ -16,9 +16,12 @@ interface WeatherAPI {
     fun getForecast(@Path("latitude") latitude:String?,@Path("longitude") longitude:String?): Call<Weather>
 }
 
-class Weather(var currently: CurrentWeather, var minutely: Summary)
-class CurrentWeather(var temperature: String)
+class Weather(var currently: CurrentWeather, var minutely: Summary, var hourly: Hourly, var daily: Daily) {
+}
+class CurrentWeather(var temperature: String, var apparentTemperature: String,var humidity: String)
 class Summary(var summary: String)
+class Hourly(var summary: String)
+class Daily(var summary: String)
 
 
 
