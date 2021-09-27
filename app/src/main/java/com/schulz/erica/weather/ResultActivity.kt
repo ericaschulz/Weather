@@ -47,7 +47,7 @@ class ResultActivity : AppCompatActivity() {
 
                 val infoString = currentSummary.toString() + "..presently. The current temperature is " + temperature + "F, and the apparent" +
                         " (real feel) temperature is " + apparentTemperature+
-                        "F. The humidity is " +humidity+ ". The forecast for the rest of the day is: " +hourly+ "Throughout the week: " +daily+""
+                        "F. The humidity is " +humidity+ ". The forecast for the rest of the day: " +hourly+ "Throughout the week: " +daily+""
 
 
                 infoStrings.add(infoString)
