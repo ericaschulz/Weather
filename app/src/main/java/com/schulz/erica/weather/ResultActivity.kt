@@ -2,6 +2,7 @@ package com.schulz.erica.weather
 
 import android.os.Bundle
 import android.widget.ArrayAdapter
+import androidx.appcompat.app.AppCompatActivity
 import kotlinx.android.synthetic.main.activity_result.*
 import retrofit2.Call
 import retrofit2.Callback
@@ -9,15 +10,13 @@ import retrofit2.Response
 import android.widget.ListView as AndroidWidgetListView
 
 
-class ResultActivity : CoroutineScopeActivity() {
+class ResultActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_result)
 
-        val zipCode = intent.extras.getString("zip_code")
-
-
+        val zipCode = intent.extras?.getString("zip_code")
 
         var latLongRetriever = LatLongRetriever()
 
@@ -90,9 +89,9 @@ class ResultActivity : CoroutineScopeActivity() {
     }
 
 
-        latLongRetriever.getLatLong(zipCallback, zipCode)
-
-
+        if (zipCode != null) {
+            latLongRetriever.getLatLong(zipCallback, zipCode)
+        }
 
 
 
@@ -102,11 +101,6 @@ class ResultActivity : CoroutineScopeActivity() {
 
 }
 
-private fun <String> MutableList<String>.add(timezone: String?, summary: String?, temperature: String?) {
-
-
-
-}
 
 
 

@@ -7,11 +7,10 @@ import retrofit2.converter.gson.GsonConverterFactory
 import retrofit2.http.GET
 import retrofit2.http.Path
 
-
 interface WeatherAPI {
 
 
-    @GET("/forecast/b6005c3a5f494b5ed538d4ef32ebd307/{latitude},{longitude}")
+    @GET("{latitude},{longitude}")
 
 
     fun getForecast(@Path("latitude") latitude:String?,@Path("longitude") longitude:String?): Call<Weather>
@@ -30,14 +29,14 @@ class WeatherRetriever {
     init{
 
      val retrofit =  Retrofit.Builder()
-         .baseUrl("https://api.darksky.net")
+         .baseUrl(Constants.DS_BASE_URL)
          .addConverterFactory(GsonConverterFactory.create())
          .build()
          service = retrofit.create(WeatherAPI::class.java)
     }
 
 
-    fun getForecast(callback: Callback<Weather>, lat: String?, lng: String?) {
+    fun getForecast(callback: Callback<Weather>,lat: String?, lng: String?) {
         val call = service.getForecast(lat,lng)
         call.enqueue(callback)
 
