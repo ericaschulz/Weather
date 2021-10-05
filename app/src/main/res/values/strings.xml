@@ -4,5 +4,6 @@
     <string name="get_forecast">GET FORECAST</string>
     <string name="enter_zipcode">enter zipcode</string>
     <string name="weather">Weather</string>
+    <string name="title_activity_main_compose">MainComposeActivity</string>
 
 </resources>

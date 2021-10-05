@@ -18,13 +18,13 @@ class ResultActivity : AppCompatActivity() {
 
         val zipCode = intent.extras?.getString("zip_code")
 
-        var latLongRetriever = LatLongRetriever()
+        val latLongRetriever = LatLongRetriever()
 
-        var listView = findViewById<AndroidWidgetListView>(R.id.result_list_view)
+        val listView = findViewById<AndroidWidgetListView>(R.id.result_list_view)
 
-        var infoStrings = mutableListOf<String>()
+        val infoStrings = mutableListOf<String>()
 
-        var adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, infoStrings)
+        val adapter = ArrayAdapter(this, android.R.layout.simple_list_item_1, infoStrings)
 
         listView?.adapter = adapter
 
@@ -73,13 +73,13 @@ class ResultActivity : AppCompatActivity() {
                 val city: String? = response.body()?.city
                 val state: String? = response.body()?.state
 
-                val cityState: String? =city.toString() + ", " + state.toString()
+                val cityState: String =city.toString() + ", " + state.toString()
 
                 city_name.text = cityState
 
 
 
-                var weatherRetriever = WeatherRetriever()
+                val weatherRetriever = WeatherRetriever()
                 weatherRetriever.getForecast(weatherCallback, lat, lng)
 
 
